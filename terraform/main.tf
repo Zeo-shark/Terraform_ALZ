@@ -1,10 +1,10 @@
 terraform {
-  backend "azurerm" {
-    resource_group_name  = "tamopstfstates"
-    storage_account_name = "tfstategitops"
-    container_name       = "terraformgithubexample"
-    key                  = "terraformgithubexample.tfstate"
-  }
+  # backend "azurerm" {
+  #   resource_group_name  = "tamopstfstates"
+  #   storage_account_name = "tfstategitops"
+  #   container_name       = "terraformgithubexample"
+  #   key                  = "terraformgithubexample.tfstate"
+  # }
 }
 
 provider "azurerm" {
