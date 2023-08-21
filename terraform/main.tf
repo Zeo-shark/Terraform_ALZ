@@ -1,47 +1,30 @@
+# We strongly recommend using the required_providers block to set the
+# Azure Provider source and version being used
 terraform {
-  # backend "azurerm" {
-  #   resource_group_name  = "tamopstfstates"
-  #   storage_account_name = "tfstategitops"
-  #   container_name       = "terraformgithubexample"
-  #   key                  = "terraformgithubexample.tfstate"
-  # }
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "3.70.0"
+      version = "=3.0.0"
     }
   }
 }
 
+# Configure the Microsoft Azure Provider
 provider "azurerm" {
-  skip_provider_registration = true
+  skip_provider_registration = true # This is only required when the User, Service Principal, or Identity running Terraform lacks the permissions to register Azure Resource Providers.
   features {}
 }
 
-data "azurerm_client_config" "current" {}
-
-#Create Resource Group
-resource "azurerm_resource_group" "tamops" {
-  name     = "tamops"
-  location = "eastus2"
+# Create a resource group
+resource "azurerm_resource_group" "example" {
+  name     = "example-resources"
+  location = "West Europe"
 }
 
-#Create Virtual Network
-resource "azurerm_virtual_network" "vnet" {
-  name                = "tamops-vnet"
-  address_space       = ["192.168.0.0/16"]
-  location            = "eastus2"
-  resource_group_name = azurerm_resource_group.tamops.name
+# Create a virtual network within the resource group
+resource "azurerm_virtual_network" "example" {
+  name                = "example-network"
+  resource_group_name = azurerm_resource_group.example.name
+  location            = azurerm_resource_group.example.location
+  address_space       = ["10.0.0.0/16"]
 }
-
-# Create Subnet
-resource "azurerm_subnet" "subnet" {
-  name                 = "subnet"
-  resource_group_name  = azurerm_resource_group.tamops.name
-  virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = "192.168.0.0/24"
-}
-
-
-
-  
