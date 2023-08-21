@@ -5,6 +5,12 @@ terraform {
   #   container_name       = "terraformgithubexample"
   #   key                  = "terraformgithubexample.tfstate"
   # }
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "4.2.0"
+    }
+  }
 }
 
 provider "azurerm" {
