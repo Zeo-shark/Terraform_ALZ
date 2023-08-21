@@ -34,7 +34,7 @@ module "enterprise_scale" {
     azurerm.management   = azurerm
   }
 
-  root_parent_id = data.azurerm_client_config.core.tenant_id
+  root_parent_id = dc165e1d-5d8f-405b-8521-0b1dc3a1aee3
   root_id        = "myorg"
   root_name      = "My Organization"
 }
