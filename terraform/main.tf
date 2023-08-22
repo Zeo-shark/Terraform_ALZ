@@ -11,9 +11,10 @@ terraform {
 }
 
 provider "azurerm" {
-  skip_provider_registration = true 
+  skip_provider_registration = true
   features {}
 }
+
 
 # You can use the azurerm_client_config data resource to dynamically
 # extract connection settings from the provider configuration.
